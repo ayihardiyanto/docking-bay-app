@@ -1,11 +1,16 @@
 package com.dkatalis.entity;
 
+import java.util.Objects;
+
 public class Pier {
     private Ship ship;
     private String status;
 
     public String getStatus() {
         return status;
+    }
+
+    public Pier() {
     }
 
     public void setStatus(String status) {
@@ -17,8 +22,6 @@ public class Pier {
         this.status = status;
     }
 
-    public Pier() {
-    }
 
     public Ship getShip() {
         return ship;
@@ -27,6 +30,5 @@ public class Pier {
     public void setShip(Ship ship) {
         this.ship = ship;
     }
-
 
 }
