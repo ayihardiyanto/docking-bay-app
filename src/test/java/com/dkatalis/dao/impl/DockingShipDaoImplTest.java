@@ -42,15 +42,40 @@ public class DockingShipDaoImplTest {
     }
 
     @Test
-    public void dock_shouldReturn_dockFailedMessage_when_givenNumberOfPier_is_one_with_two_boats() {
+    public void dock_shouldReturn_fullPierMessage_when_givenNumberOfPier_is_one_with_two_boats() {
         Integer givenNumberOfPier = 1;
-        String expected = String.format(Message.DOCK_FAILED);
+        String expected = String.format(Message.FULL_PIER_MESSAGE);
         DockingShipDao dockingShipDao = new DockingShipDaoImpl(givenNumberOfPier);
         dockingShipDao.generateBoatingDock();
         dockingShipDao.dock("ABCD");
         String actual = dockingShipDao.dock("DEFG");
 
-                Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void reserve_shouldReturn_reserveSuccessMessage_when_givenNumberOfPier_is_one_with_boatToReserve_is_one() {
+        Integer givenNumberOfPier = 1;
+        String expected = String.format(Message.RESERVE_SUCCESS, givenNumberOfPier);
+        DockingShipDao dockingShipDao = new DockingShipDaoImpl(givenNumberOfPier);
+        dockingShipDao.generateBoatingDock();
+        String actual = dockingShipDao.reserve("ABCD");
+
+        Assert.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void reserve_shouldReturn_fullPierMessage_when_givenNumberOfPier_is_one_with_two_boatsToBeReserved() {
+        Integer givenNumberOfPier = 1;
+        String expected = String.format(Message.FULL_PIER_MESSAGE);
+        DockingShipDao dockingShipDao = new DockingShipDaoImpl(givenNumberOfPier);
+        dockingShipDao.generateBoatingDock();
+        dockingShipDao.dock("ABCD");
+        String actual = dockingShipDao.dock("DEFG");
+
+        Assert.assertEquals(expected, actual);
 
     }
 }

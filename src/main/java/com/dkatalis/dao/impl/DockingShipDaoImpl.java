@@ -24,19 +24,24 @@ public class DockingShipDaoImpl implements DockingShipDao {
         return String.format(Message.PIER_CREATED, numberOfPier);
     }
 
-    public String reserve(Ship ship) {
-
-        return null;
+    public String reserve(String registrationNumber) {
+        for (Map.Entry<Integer, Pier> pier : piers.entrySet()){
+            if (pier.getValue() == null){
+                piers.put(pier.getKey(), new Pier(new Ship(registrationNumber), Message.RESERVED_STATUS));
+                return String.format(Message.RESERVE_SUCCESS, pier.getKey());
+            }
+        }
+        return Message.FULL_PIER_MESSAGE;
     }
 
     public String dock(String registrationNumber) {
         for (Map.Entry<Integer, Pier> pier : piers.entrySet()){
             if (pier.getValue() == null){
-                piers.put(pier.getKey(), new Pier(new Ship(registrationNumber)));
+                piers.put(pier.getKey(), new Pier(new Ship(registrationNumber), Message.DOCKED_STATUS));
                 return String.format(Message.DOCK_SUCCESS, pier.getKey());
             }
         }
-        return Message.DOCK_FAILED;
+        return Message.FULL_PIER_MESSAGE;
     }
 
     public String leave(String registrationNumber) {

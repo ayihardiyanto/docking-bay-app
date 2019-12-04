@@ -2,9 +2,11 @@ package com.dkatalis.entity;
 
 public class Pier {
     private Ship ship;
+    private String status;
 
-    public Pier(Ship ship) {
+    public Pier(Ship ship, String status) {
         this.ship = ship;
+        this.status = status;
     }
 
     public Pier() {
