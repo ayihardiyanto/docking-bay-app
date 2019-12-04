@@ -49,18 +49,18 @@ public class DockingShipDaoImpl implements DockingShipDao {
         return Message.FULL_PIER_MESSAGE;
     }
 
-    public String leave(String registrationNumber) {
+    public String leave(Integer pierNumber) {
         for (Map.Entry<Integer, Pier> pier : piers.entrySet()) {
             if (pier.getValue() != null) {
                 if (pier.getValue().getStatus().equals(Message.RESERVED_STATUS))
-                    return String.format(Message.STILL_IN_RESERVE, registrationNumber);
-                if (pier.getValue().getShip().getBoatRegistrationNumber().equals(registrationNumber)) {
+                    return String.format(Message.STILL_IN_RESERVE, pier.getValue().getShip().getBoatRegistrationNumber());
+                if (pier.getKey().equals(pierNumber)) {
                     piers.put(pier.getKey(), null);
                     return String.format(Message.LEAVE_SUCCESS, pier.getKey());
                 }
             }
         }
-        return String.format(Message.LEAVE_FAILED, registrationNumber);
+        return String.format(Message.LEAVE_FAILED, pierNumber);
     }
 
     public String status() {

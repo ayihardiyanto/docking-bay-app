@@ -102,7 +102,7 @@ public class DockingShipDaoImplTest {
         DockingShipDao dockingShipDao = new DockingShipDaoImpl(givenNumberOfPier);
         dockingShipDao.generateBoatingDock();
         dockingShipDao.dock(regNumber);
-        String actual = dockingShipDao.leave(regNumber);
+        String actual = dockingShipDao.leave(1);
 
         Assert.assertEquals(expected, actual);
     }
@@ -111,10 +111,10 @@ public class DockingShipDaoImplTest {
     public void leave_shouldReturn_leaveFailedMessage_when_givenNumberOfPier_is_one_and_no_boat_with_specifiedRegistrationNumber() {
         Integer givenNumberOfPier = 1;
         String regNumber = "AAAA";
-        String expected = String.format(Message.LEAVE_FAILED, regNumber);
+        String expected = String.format(Message.LEAVE_FAILED, 1);
         DockingShipDao dockingShipDao = new DockingShipDaoImpl(givenNumberOfPier);
         dockingShipDao.generateBoatingDock();
-        String actual = dockingShipDao.leave(regNumber);
+        String actual = dockingShipDao.leave(1);
 
         Assert.assertEquals(expected, actual);
     }
@@ -127,7 +127,7 @@ public class DockingShipDaoImplTest {
         DockingShipDao dockingShipDao = new DockingShipDaoImpl(givenNumberOfPier);
         dockingShipDao.generateBoatingDock();
         dockingShipDao.reserve(regNumber);
-        String actual = dockingShipDao.leave(regNumber);
+        String actual = dockingShipDao.leave(1);
 
         Assert.assertEquals(expected, actual);
     }

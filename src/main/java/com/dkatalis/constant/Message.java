@@ -10,5 +10,5 @@ public class Message {
     public static final String RESERVED_STATUS = "RESERVED";
     public static final String STILL_IN_RESERVE = "The pier is reserved by %s, but it's not docked yet";
     public static final String LEAVE_SUCCESS = "Pier number %d is free";
-    public static final String LEAVE_FAILED = "No boat, with registration number %s";
+    public static final String LEAVE_FAILED = "Currently no boat in pier %d";
 }
