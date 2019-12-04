@@ -85,8 +85,8 @@ public class DockingShipDaoImplTest {
         String expected = String.format(Message.FULL_PIER_MESSAGE);
         DockingShipDao dockingShipDao = new DockingShipDaoImpl(givenNumberOfPier);
         dockingShipDao.generateBoatingDock();
-        dockingShipDao.dock("ABCD");
-        String actual = dockingShipDao.dock("DEFG");
+        dockingShipDao.reserve("ABCD");
+        String actual = dockingShipDao.reserve("DEFG");
 
         Assert.assertEquals(expected, actual);
 
