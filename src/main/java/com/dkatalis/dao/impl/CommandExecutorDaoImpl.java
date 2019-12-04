@@ -1,13 +1,11 @@
 package com.dkatalis.dao.impl;
 
-import com.dkatalis.dao.CommandProcessorDao;
+import com.dkatalis.dao.CommandExecutorDao;
 import com.dkatalis.dao.DockingShipDao;
-
-import java.nio.file.Path;
 
 import static com.dkatalis.constant.Command.*;
 
-public class CommandProcessorDaoImpl implements CommandProcessorDao {
+public class CommandExecutorDaoImpl implements CommandExecutorDao {
     private DockingShipDao dockingShipDao;
     private final Integer PARAM_ONE = 1;
     private final Integer COMMAND = 0;

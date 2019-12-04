@@ -1,5 +1,5 @@
 package com.dkatalis.dao;
 
-public interface CommandProcessorDao {
+public interface CommandExecutorDao {
     String executeCommand(String[] commandLine);
 }

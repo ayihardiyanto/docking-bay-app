@@ -1,7 +1,6 @@
 package com.dkatalis.dao.impl;
 
-import com.dkatalis.constant.TextFormat;
-import com.dkatalis.dao.CommandProcessorDao;
+import com.dkatalis.dao.CommandExecutorDao;
 import com.dkatalis.dao.FileReaderProcessorDao;
 
 import java.io.BufferedReader;
@@ -9,7 +8,7 @@ import java.io.IOException;
 
 public class FileReaderProcessorDaoImpl implements FileReaderProcessorDao {
     private boolean executed = false;
-    private CommandProcessorDao commandProcessor = new CommandProcessorDaoImpl();
+    private CommandExecutorDao commandProcessor = new CommandExecutorDaoImpl();
 
     @Override
     public boolean readCommand(BufferedReader bufferedReader) throws IOException {
