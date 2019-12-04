@@ -91,4 +91,43 @@ public class DockingShipDaoImplTest {
         Assert.assertEquals(expected, actual);
 
     }
+
+
+    @Test
+    public void leave_shouldReturn_leaveSuccesMessage_when_givenNumberOfPier_is_one_and_one_boat_with_specifiedRegistrationNumber() {
+        Integer givenNumberOfPier = 1;
+        String regNumber = "AAAA";
+        String expected = String.format(Message.LEAVE_SUCCESS, givenNumberOfPier);
+        DockingShipDao dockingShipDao = new DockingShipDaoImpl(givenNumberOfPier);
+        dockingShipDao.generateBoatingDock();
+        dockingShipDao.dock(regNumber);
+        String actual = dockingShipDao.leave(regNumber);
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void leave_shouldReturn_leaveFailedMessage_when_givenNumberOfPier_is_one_and_no_boat_with_specifiedRegistrationNumber() {
+        Integer givenNumberOfPier = 1;
+        String regNumber = "AAAA";
+        String expected = String.format(Message.LEAVE_FAILED, regNumber);
+        DockingShipDao dockingShipDao = new DockingShipDaoImpl(givenNumberOfPier);
+        dockingShipDao.generateBoatingDock();
+        String actual = dockingShipDao.leave(regNumber);
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void leave_shouldReturn_stillInReserveMessage_when_givenNumberOfPier_is_one_and_reserved_boat_with_specifiedRegistrationNumber_not_docked_yet() {
+        Integer givenNumberOfPier = 1;
+        String regNumber = "AAAA";
+        String expected = String.format(Message.STILL_IN_RESERVE, regNumber);
+        DockingShipDao dockingShipDao = new DockingShipDaoImpl(givenNumberOfPier);
+        dockingShipDao.generateBoatingDock();
+        dockingShipDao.reserve(regNumber);
+        String actual = dockingShipDao.leave(regNumber);
+
+        Assert.assertEquals(expected, actual);
+    }
 }
