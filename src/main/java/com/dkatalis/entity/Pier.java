@@ -19,4 +19,6 @@ public class Pier {
     public void setShip(Ship ship) {
         this.ship = ship;
     }
+
+
 }
