@@ -57,7 +57,7 @@ public class DockingShipDaoImplTest {
     @Test
     public void dock_shouldReturn_fullPierMessage_when_givenNumberOfPier_is_one_with_two_boats() {
         Integer givenNumberOfPier = 1;
-        String expected = String.format(Message.FULL_PIER_MESSAGE);
+        String expected = Message.FULL_PIER_MESSAGE;
         DockingShipDao dockingShipDao = new DockingShipDaoImpl(givenNumberOfPier);
         dockingShipDao.generateBoatingDock();
         dockingShipDao.dock("ABCD");

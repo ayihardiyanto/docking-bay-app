@@ -36,12 +36,12 @@ public class DockingShipDaoImpl implements DockingShipDao {
 
     public String dock(String registrationNumber) {
         for (Map.Entry<Integer, Pier> pier : piers.entrySet()){
-            if (registrationNumber.equals(pier.getValue().getShip().getBoatRegistrationNumber())){
-                piers.replace(pier.getKey(), pier.getValue(), new Pier(new Ship(registrationNumber), Message.DOCKED_STATUS));
+            if (pier.getValue() == null){
+                piers.put(pier.getKey(), new Pier(new Ship(registrationNumber), Message.DOCKED_STATUS));
                 return String.format(Message.DOCK_SUCCESS, pier.getKey());
             }
-            else if (pier.getValue() == null){
-                piers.put(pier.getKey(), new Pier(new Ship(registrationNumber), Message.DOCKED_STATUS));
+            else if (registrationNumber.equals(pier.getValue().getShip().getBoatRegistrationNumber())){
+                piers.replace(pier.getKey(), pier.getValue(), new Pier(new Ship(registrationNumber), Message.DOCKED_STATUS));
                 return String.format(Message.DOCK_SUCCESS, pier.getKey());
             }
         }
