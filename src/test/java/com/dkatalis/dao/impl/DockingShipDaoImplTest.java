@@ -28,4 +28,29 @@ public class DockingShipDaoImplTest {
         Assert.assertEquals(expectedResult, actualResult);
 
     }
+
+    @Test
+    public void dock_shouldReturn_dockSuccessMessage_when_givenNumberOfPier_is_one_with_one_boat() {
+        Integer givenNumberOfPier = 1;
+        String expected = String.format(Message.DOCK_SUCCESS, givenNumberOfPier);
+        DockingShipDao dockingShipDao = new DockingShipDaoImpl(givenNumberOfPier);
+        dockingShipDao.generateBoatingDock();
+        String actual = dockingShipDao.dock("ABCD");
+
+        Assert.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void dock_shouldReturn_dockFailedMessage_when_givenNumberOfPier_is_one_with_two_boats() {
+        Integer givenNumberOfPier = 1;
+        String expected = String.format(Message.DOCK_FAILED);
+        DockingShipDao dockingShipDao = new DockingShipDaoImpl(givenNumberOfPier);
+        dockingShipDao.generateBoatingDock();
+        dockingShipDao.dock("ABCD");
+        String actual = dockingShipDao.dock("DEFG");
+
+                Assert.assertEquals(expected, actual);
+
+    }
 }
