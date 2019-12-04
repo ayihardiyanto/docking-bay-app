@@ -1,6 +1,7 @@
 package com.dkatalis.dao.impl;
 
 import com.dkatalis.constant.Message;
+import com.dkatalis.constant.TextFormat;
 import com.dkatalis.dao.DockingShipDao;
 import org.junit.Assert;
 import org.junit.Test;
@@ -129,5 +130,45 @@ public class DockingShipDaoImplTest {
         String actual = dockingShipDao.leave(regNumber);
 
         Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void status_shouldReturn_currentStatus_of_each_activePiers_when_there_is_a_boat_with_reserved_status() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(TextFormat.STATUS_HEADER);
+        String regNumber = "AABB";
+        DockingShipDao dockingShipDao = new DockingShipDaoImpl(1);
+        dockingShipDao.generateBoatingDock();
+        dockingShipDao.reserve(regNumber);
+        String expected = builder.append(String.format(TextFormat.STATUS_FORMAT, 1, regNumber, Message.RESERVED_STATUS)).toString();
+        String actual = dockingShipDao.status();
+
+        Assert.assertEquals(expected, actual);
+
+
+    }
+
+    @Test
+    public void status_shouldReturn_currentStatus_of_each_activePiers_when_there_are_boats_with_docked_and_reserved_status() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(TextFormat.STATUS_HEADER);
+        String regNumber = "AABB";
+        DockingShipDao dockingShipDao = new DockingShipDaoImpl(6);
+        dockingShipDao.generateBoatingDock();
+        dockingShipDao.reserve(regNumber);
+        dockingShipDao.dock("ABCD");
+        dockingShipDao.dock("AADC");
+        dockingShipDao.reserve("AAAA");
+        builder.append(String.format(TextFormat.STATUS_FORMAT, 1, regNumber, Message.RESERVED_STATUS));
+        builder.append(String.format(TextFormat.STATUS_FORMAT, 2, "ABCD", Message.DOCKED_STATUS));
+        builder.append(String.format(TextFormat.STATUS_FORMAT, 3, "AADC", Message.DOCKED_STATUS));
+        builder.append(String.format(TextFormat.STATUS_FORMAT, 4, "AAAA", Message.RESERVED_STATUS));
+        String expected = builder.toString();
+
+        String actual = dockingShipDao.status();
+
+        Assert.assertEquals(expected, actual);
+
+
     }
 }
