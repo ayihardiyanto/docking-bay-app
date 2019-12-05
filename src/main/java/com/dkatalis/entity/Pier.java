@@ -1,7 +1,5 @@
 package com.dkatalis.entity;
 
-import java.util.Objects;
-
 public class Pier {
     private Ship ship;
     private String status;

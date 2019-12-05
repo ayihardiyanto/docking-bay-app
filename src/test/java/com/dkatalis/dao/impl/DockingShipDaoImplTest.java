@@ -22,7 +22,7 @@ public class DockingShipDaoImplTest {
     @Test
     public void generateBoatingDock_shouldReturn_pierCreatedFailedMessage_when_givenNumberOfPier_is_zero() {
         Integer givenNumberOfPier = 0;
-        String expectedResult = String.format(Message.INVALID_NUMBER_OF_TIERS, givenNumberOfPier);
+        String expectedResult = String.format(Message.INVALID_NUMBER_OF_PIERS, givenNumberOfPier);
         DockingShipDao dockingShipDao = new DockingShipDaoImpl(givenNumberOfPier);
         String actualResult = dockingShipDao.generateBoatingDock();
 
