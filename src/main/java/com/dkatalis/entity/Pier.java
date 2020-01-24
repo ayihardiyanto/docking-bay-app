@@ -20,6 +20,10 @@ public class Pier {
         this.status = status;
     }
 
+    public Pier(Ship ship) {
+        this.ship = ship;
+    }
+
 
     public Ship getShip() {
         return ship;

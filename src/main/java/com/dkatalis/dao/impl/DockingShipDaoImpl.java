@@ -66,6 +66,7 @@ public class DockingShipDaoImpl implements DockingShipDao {
         return Message.FULL_PIER_MESSAGE;
     }
 
+
     /**
      * Boat can dock immediately without reserving pier
      * if pier is empty (without any pier obj) from boat/reservation
